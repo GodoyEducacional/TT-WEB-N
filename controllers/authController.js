@@ -20,7 +20,7 @@ const registerUser = async (req, res, next) => {
 
     // Criar usuario conforme o Model
     const user = new User({
-      nome,
+      name,
       email,
       password: passwordHash, // Senha criptografada
     });

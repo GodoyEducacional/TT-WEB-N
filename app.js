@@ -17,8 +17,8 @@ app.get("/", (requisicao, resposta) => {
   resposta.status(200).send({ msg: "Bem vindo a API!" });
 });
 
-app.use("api/auth", authRoutes);
-app.use("api/users", userRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
 
 app.use(errorHandler);
 
