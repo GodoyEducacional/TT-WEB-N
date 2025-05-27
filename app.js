@@ -22,18 +22,23 @@ app.use("/api/users", userRoutes);
 
 app.use(errorHandler);
 
-// Inicia o servidor na porta 3000 e conecta ao DB
-mongoose
-  .connect(
-    `mongodb+srv://${dbUser}:${dbPassword}@clusterapi.h93mb.mongodb.net/?retryWrites=true&w=majority&appName=ClusterAPI`
-  )
-  .then(() => {
-    console.log("Conectado ao MongoDB");
+const startServer = async () => {
+  try {
+    await mongoose.connect(
+      `mongodb+srv://${dbUser}:${dbPassword}@clusterapi.h93mb.mongodb.net/?retryWrites=true&w=majority&appName=ClusterAPI`
+    );
+    console.log("Conectou ao banco (MongoDB");
+
     app.listen(port, () => {
       console.log(`Servidor rodando na porta ${port}`);
     });
-  })
-  .catch((err) => {
+  } catch (err) {
     console.error("Erro ao conectar ao MongoDB", err);
     process.exit(1);
-  });
+  }
+};
+
+// Inicia o servidor apenas se NÃO estiver em ambiente de teste
+if (process.env.NODE_ENV !== "test") {
+  startServer();
+}
