@@ -31,12 +31,12 @@ beforeAll(async () => {
 // Limpeza após cada teste
 afterEach(async () => {
   // Acessa todas as coleções existentes no DB
-  const colletions = mongoose.connection.collections;
+  const collections = mongoose.connection.collections;
 
   // Para cada coleção encontrada ->
-  for (const key in colletions) {
-    const collection = colletions[key];
+  for (const key in collections) {
     // Remove todos os documentos da coleção
+    const collection = collections[key];
     await collection.deleteMany({});
   }
 });
