@@ -42,3 +42,5 @@ const startServer = async () => {
 if (process.env.NODE_ENV !== "test") {
   startServer();
 }
+
+module.exports = app;
